@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { countriesData } from "./countriesData";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Mock flag data
 
@@ -46,45 +48,6 @@ const FloatingParticles: React.FC = () => (
       />
     ))}
   </div>
-);
-
-// Modern Header Component
-const Header: React.FC = () => (
-  <header className="relative z-10 bg-black/20 backdrop-blur-xl border-b border-white/10">
-    <div className="container mx-auto px-6 py-8">
-      <div className="flex items-center justify-center space-x-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl">
-          <span className="text-2xl">🏳</span>
-        </div>
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-            Flag Quiz
-          </h1>
-          <p className="text-sm text-white/60 font-medium tracking-wider">
-            ELITE EDITION
-          </p>
-        </div>
-      </div>
-    </div>
-  </header>
-);
-
-// Luxury Footer Component
-const Footer: React.FC = () => (
-  <footer className="relative z-10 bg-black/20 backdrop-blur-xl border-t border-white/10 mt-auto">
-    <div className="container mx-auto px-6 py-6">
-      <div className="text-center">
-        <p className="text-white/60 text-sm font-medium">
-          © 2025 Flag Quiz Elite • Crafted with precision
-        </p>
-        <div className="flex justify-center space-x-2 mt-2">
-          <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-          <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse delay-200"></div>
-          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-400"></div>
-        </div>
-      </div>
-    </div>
-  </footer>
 );
 
 // Luxury Setup Screen Component
