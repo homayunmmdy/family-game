@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { countriesData } from "./countriesData";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { countriesData } from "./data/countriesData";
+import scoreData from "./data/scoreData";
 
 // Mock flag data
-
 
 // Types
 interface Flag {
@@ -272,51 +272,14 @@ const ScoreScreen: React.FC<ScoreScreenProps> = ({
 }) => {
   const percentage = Math.round((score / totalQuestions) * 100);
 
-  const getScoreData = () => {
-    if (percentage >= 90)
-      return {
-        message: "Legendary Master",
-        emoji: "👑",
-        color: "from-yellow-400 to-amber-500",
-        bgColor: "from-yellow-500/20 to-amber-500/20",
-      };
-    if (percentage >= 80)
-      return {
-        message: "Elite Champion",
-        emoji: "🏆",
-        color: "from-purple-400 to-pink-500",
-        bgColor: "from-purple-500/20 to-pink-500/20",
-      };
-    if (percentage >= 70)
-      return {
-        message: "Distinguished Player",
-        emoji: "⭐",
-        color: "from-blue-400 to-cyan-500",
-        bgColor: "from-blue-500/20 to-cyan-500/20",
-      };
-    if (percentage >= 60)
-      return {
-        message: "Skilled Performer",
-        emoji: "💎",
-        color: "from-green-400 to-emerald-500",
-        bgColor: "from-green-500/20 to-emerald-500/20",
-      };
-    return {
-      message: "Rising Challenger",
-      emoji: "🚀",
-      color: "from-orange-400 to-red-500",
-      bgColor: "from-orange-500/20 to-red-500/20",
-    };
-  };
-
-  const scoreData = getScoreData();
+  const socareInfo = scoreData(percentage);
 
   return (
     <div className="flex-1 flex items-center justify-center relative z-10 py-8">
       <div className="bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 p-10 max-w-lg w-full mx-6 shadow-2xl relative overflow-hidden">
         {/* Luxury gradient overlay */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${scoreData.bgColor} rounded-3xl`}
+          className={`absolute inset-0 bg-gradient-to-br ${socareInfo.bgColor} rounded-3xl`}
         ></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500"></div>
 
@@ -324,29 +287,29 @@ const ScoreScreen: React.FC<ScoreScreenProps> = ({
           {/* Trophy Section */}
           <div className="mb-8">
             <div
-              className={`w-24 h-24 bg-gradient-to-br ${scoreData.color} rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-2xl transform hover:scale-110 transition-transform duration-300`}
+              className={`w-24 h-24 bg-gradient-to-br ${socareInfo.color} rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-2xl transform hover:scale-110 transition-transform duration-300`}
             >
-              {scoreData.emoji}
+              {socareInfo.emoji}
             </div>
             <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
               Challenge Complete!
             </h2>
             <p
-              className={`text-xl font-semibold bg-gradient-to-r ${scoreData.color} bg-clip-text text-transparent`}
+              className={`text-xl font-semibold bg-gradient-to-r ${socareInfo.color} bg-clip-text text-transparent`}
             >
-              {scoreData.message}
+              {socareInfo.message}
             </p>
           </div>
 
           {/* Score Display */}
           <div className="mb-8">
             <div
-              className={`text-7xl font-bold bg-gradient-to-r ${scoreData.color} bg-clip-text text-transparent mb-2`}
+              className={`text-7xl font-bold bg-gradient-to-r ${socareInfo.color} bg-clip-text text-transparent mb-2`}
             >
               {score}/{totalQuestions}
             </div>
             <div
-              className={`text-3xl font-bold bg-gradient-to-r ${scoreData.color} bg-clip-text text-transparent`}
+              className={`text-3xl font-bold bg-gradient-to-r ${socareInfo.color} bg-clip-text text-transparent`}
             >
               {percentage}% Accuracy
             </div>
