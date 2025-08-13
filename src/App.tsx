@@ -1,23 +1,8 @@
 import React, { useState } from "react";
+import { countriesData } from "./countriesData";
 
 // Mock flag data
-const flagData = [
-  { country: "United States", flagUrl: "https://flagcdn.com/w320/us.png" },
-  { country: "Germany", flagUrl: "https://flagcdn.com/w320/de.png" },
-  { country: "Japan", flagUrl: "https://flagcdn.com/w320/jp.png" },
-  { country: "Brazil", flagUrl: "https://flagcdn.com/w320/br.png" },
-  { country: "France", flagUrl: "https://flagcdn.com/w320/fr.png" },
-  { country: "United Kingdom", flagUrl: "https://flagcdn.com/w320/gb.png" },
-  { country: "Canada", flagUrl: "https://flagcdn.com/w320/ca.png" },
-  { country: "Australia", flagUrl: "https://flagcdn.com/w320/au.png" },
-  { country: "Italy", flagUrl: "https://flagcdn.com/w320/it.png" },
-  { country: "Spain", flagUrl: "https://flagcdn.com/w320/es.png" },
-  { country: "China", flagUrl: "https://flagcdn.com/w320/cn.png" },
-  { country: "India", flagUrl: "https://flagcdn.com/w320/in.png" },
-  { country: "South Korea", flagUrl: "https://flagcdn.com/w320/kr.png" },
-  { country: "Mexico", flagUrl: "https://flagcdn.com/w320/mx.png" },
-  { country: "Argentina", flagUrl: "https://flagcdn.com/w320/ar.png" },
-];
+
 
 // Types
 interface Flag {
@@ -145,7 +130,7 @@ const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
                 <input
                   type="number"
                   min="1"
-                  max={flagData.length}
+                  max={countriesData.length}
                   value={questionCount}
                   onChange={(e) =>
                     setQuestionCount(parseInt(e.target.value) || 1)
@@ -155,7 +140,7 @@ const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
               <p className="text-white/50 text-xs mt-3 font-medium">
-                Select between 1 and {flagData.length} questions for your
+                Select between 1 and {countriesData.length} questions for your
                 challenge
               </p>
             </div>
@@ -456,11 +441,11 @@ const App: React.FC = () => {
 
   // Generate random questions with luxury randomization
   const generateQuestions = (count: number): Question[] => {
-    const shuffled = [...flagData].sort(() => Math.random() - 0.5);
+    const shuffled = [...countriesData].sort(() => Math.random() - 0.5);
     const selectedFlags = shuffled.slice(0, count);
 
     return selectedFlags.map((flag) => {
-      const incorrectOptions = flagData
+      const incorrectOptions = countriesData
         .filter((f) => f.country !== flag.country)
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
